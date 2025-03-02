@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>IETF YANG-Push &middot; How to Deploy</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+</head>
+<body>
+<div id="content">
+  <h1>IETF YANG-Push &middot; How to Deploy</h1>
+  <ul id="menu">
+    <li><a href="index.html">intro</a></li>
+    <li><a href="implementations.html">implementations</a></li>
+    <li><a href="standards.html">standards</a></li>
+  </ul>
+  <div class="post">
+    <div class="col single">	
+	  <p>Describes how a YANG-Push Publisher capabilities can be discovered, YANG-Push subscriptions can be configured and YANG Library can be queried with Netconf by giving examples.</p>	
+
+	  <br/><br/>
+
+    <h3>Netconf YANG-Push Capability Discovery Example</h3>
+
+    <p>Shows which xpaths and subtrees can be subscribed in which intervall and dampening period</p>
+    <pre>
+
+    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+    &#60;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"&#62;
+      &#60;get&#62;
+        &#60;filter type="subtree"&#62;
+          &#60;system-capabilities xmlns="urn:ietf:params:xml:ns:yang:ietf-system-capabilities" /&#62;
+        &#60;/filter&#62;
+      &#60;/get&#62;
+    &#60;/rpc&#62;
+    </pre>
+
+	  <br/><br/>
+		
+    <h3>Netconf YANG Library Query Example</h3>
+
+    <p>Shows YANG module names, versions and their dependencies</p>
+    <pre>
+
+    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+    &#60;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2"&#62;
+      &#60;get&#62;
+        &#60;filter type="subtree"&#62;
+          &#60;yang-library xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-library" /&#62;
+        &#60;/filter&#62;
+      &#60;/get&#62;
+    &#60;/rpc&#62;
+    </pre>
+
+	  <br/><br/>
+
+    <h3>Netconf YANG-Push Configuration Examples</h3>
+
+    <p>Configure a YANG-Push Receiver on a Publisher</p>
+    <pre>
+
+    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+    &#60;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"&#62;
+      &#60;edit-config&#62;
+        &#60;target&#62;
+          &#60;running /&#62;
+        &#60;/target&#62;
+        &#60;config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
+          &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
+            &#60;receiver-instances xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;
+              &#60;receiver-instance&#62;
+                &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+                  &#60;udp-notif-receiver xmlns="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;
+                    &#60;address&#62;192.0.2.1&#60;/address&#62;
+                    &#60;port&#62;10000&#60;/port&#62;
+                    &#60;enable-segmentation&#62;true&#60;/enable-segmentation&#62;
+                    &#60;max-segment-size&#62;1458&#60;/max-segment-size&#62;
+                &#60;/udp-notif-receiver&#62;
+              &#60;/receiver-instance&#62;
+            &#60;/receiver-instances&#62;
+          &#60;/subscriptions&#62;
+        &#60;/config&#62;
+      &#60;/edit-config&#62;
+    &#60;/rpc&#62;
+    </pre>
+
+	  <br/>
+    
+    <p>Delete YANG-Push Receiver</p>
+    <pre>
+
+    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+      &#60;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="4"&#62;
+        &#60;edit-config&#62;
+          &#60;target&#62;
+            &#60;running /&#62;
+          &#60;/target&#62;
+        &#60;config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
+          &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
+            &#60;receiver-instances xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;
+              &#60;receiver-instance&#62;
+                &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+              &#60;/receiver-instance&#62;
+            &#60;/receiver-instances&#62;
+          &#60;/subscriptions&#62;
+        &#60;/config&#62;
+      &#60;/edit-config&#62;
+    &#60;/rpc&#62;
+    </pre>
+
+	  <br/>
+    
+    <p>Configure a Periodical YANG-Push Subscription with Anchor-Time on a Publisher</p>
+    <pre>
+
+    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+    &#60;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2"&#62;
+      &#60;edit-config&#62;
+        &#60;target&#62;
+          &#60;running /&#62;
+        &#60;/target&#62;
+        &#60;config&#62;
+          &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
+            &#60;subscription&#62;
+              &#60;id&#62;1&#60;/id&#62;
+              &#60;datastore
+                xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push"
+                xmlns:ds="urn:ietf:params:xml:ns:yang:ietf-datastores"&#62;ds:operational
+              &#60;/datastore&#62;
+              &#60;datastore-xpath-filter
+                xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push"
+                xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type"
+                xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces"&#62;
+                /if:interfaces-state/if:interface[if:type='ianaift:ethernetCsmacd']/if:statistics
+              &#60;/datastore-xpath-filter&#62;
+              &#60;dscp&#62;0&#60;/dscp&#62;
+              &#60;transport xmlns:unt="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;unt:udp-notif
+              &#60;/transport&#62;
+              &#60;encoding&#62;encode-json&#60;/encoding&#62;
+              &#60;purpose /&#62;
+              &#60;source-address&#62;10.190.64.79&#60;/source-address&#62;
+              &#60;receivers&#62;
+                &#60;receiver&#62;
+                  &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+                  &#60;receiver-instance-ref
+                    xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;udpnotif
+                  &#60;/receiver-instance-ref&#62;
+                &#60;/receiver&#62;
+              &#60;/receivers&#62;
+              &#60;periodic xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push"&#62;
+                &#60;period&#62;6000&#60;/period&#62;
+                &#60;anchor-time&#62;2025-03-02T00:00:00Z&#60;/anchor-time&#62;
+              &#60;/periodic&#62;
+            &#60;/subscription&#62;
+          &#60;/subscriptions&#62;
+        &#60;/config&#62;
+      &#60;/edit-config&#62;
+    &#60;/rpc&#62;
+    </pre>
+
+	  <br/>
+    
+    <p>Configure a On-Change YANG-Push Subscription with Sync-On-Start on a Publisher</p>
+    <pre>
+
+    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+    &#60;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="3"&#62;
+      &#60;edit-config&#62;
+        &#60;target&#62;
+          &#60;running /&#62;
+        &#60;/target&#62;
+        &#60;config&#62;
+          &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
+            &#60;subscription&#62;
+              &#60;id&#62;2&#60;/id&#62;
+              &#60;datastore
+                xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push"
+                xmlns:ds="urn:ietf:params:xml:ns:yang:ietf-datastores"&#62;ds:operational
+              &#60;/datastore&#62;
+              &#60;datastore-xpath-filter
+                xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push"
+                xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type"
+                xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces"&#62;
+                /if:interfaces-state/if:interface[if:type='ianaift:ethernetCsmacd']
+              &#60;/datastore-xpath-filter&#62;
+              &#60;dscp&#62;0&#60;/dscp&#62;
+              &#60;transport xmlns:unt="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;unt:udp-notif
+              &#60;/transport&#62;
+              &#60;encoding&#62;encode-json&#60;/encoding&#62;
+              &#60;purpose /&#62;
+              &#60;source-address&#62;10.190.64.79&#60;/source-address&#62;
+              &#60;receivers&#62;
+                &#60;receiver&#62;
+                  &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+                  &#60;receiver-instance-ref xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;udpnotif
+                  &#60;/receiver-instance-ref&#62;
+                &#60;/receiver&#62;
+              &#60;/receivers&#62;
+              &#60;on-change
+                xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push"&#62;
+                &#60;dampening-period&#62;5000&#60;/dampening-period&#62;
+                &#60;sync-on-start&#62;true&#60;/sync-on-start&#62;
+              &#60;/on-change&#62;
+            &#60;/subscription&#62;
+          &#60;/subscriptions&#62;
+        &#60;/config&#62;
+      &#60;/edit-config&#62;
+    &#60;/rpc&#62;
+    </pre>
+
+	  <br/>
+    
+    <p>Delete YANG-Push Subscription</p>
+    <pre>
+
+    &#60;?xml version="1.0" encoding="UTF-8"?&#62;
+      &#60;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="4"&#62;
+        &#60;edit-config&#62;
+          &#60;target&#62;
+            &#60;running /&#62;
+          &#60;/target&#62;
+        &#60;config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
+          &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
+            &#60;subscription xc:operation="delete"&#62;
+              &#60;id&#62;1&#60;/id&#62;
+            &#60;/subscription&#62;
+          &#60;/subscriptions&#62;
+        &#60;/config&#62;
+      &#60;/edit-config&#62;
+    &#60;/rpc&#62;
+    </pre>
+
+    </div>  
+    <div class="x"></div>
+  <div class="col">
+  </div>
+  <div id="footer">
+    <p>Thomas Graf, Paolo Lucente, Daniel Voyer and Holger Keller &middot; Feedback: <a href="https://github.com/network-analytics/www.network-analytics.org/issues/new">Create a github issue</a>,  (free github account required)</p>
+  </div>
+</div>
+</body>
+</html>

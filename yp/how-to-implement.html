@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>IETF YANG-Push &middot; How to Implement</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+</head>
+<body>
+<div id="content">
+  <h1>IETF YANG-Push &middot; How to Implement</h1>
+  <ul id="menu">
+    <li><a href="index.html">intro</a></li>
+    <li><a href="implementations.html">implementations</a></li>
+    <li><a href="standards.html">standards</a></li>
+  </ul>
+  <div class="post">
+    <div class="col single">	
+	  <p>Major network operating system vendors and operators aligned on a agile incremental driven development roadmap for YANG-Push publisher implementations. We suggest follow same implementation pattern.</p>	
+
+	  <p>For reference and implementation: open-source <a href="https://github.com/network-analytics/udp-notif-c-collector">library implementation in C</a> for YANG-Push <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-notif">draft-ietf-netconf-udp-notif</a> receiver.</p>		  
+    </div>  
+    <div class="details">
+      <img src="img/mvp.jpg" width="300" height="542">
+    </div>
+    <div class="body">
+      <h3>End of 2025 &middot; Minimum Viable Product 1:</h3>
+
+	  <p><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-notif">
+	  draft-ietf-netconf-udp-notif</a> transport (with segmentation option) and notifications encoded in <a href="https://datatracker.ietf.org/doc/html/rfc7951">RFC 7951</a> IETF-JSON.</p> 
+	  <p><a href="https://datatracker.ietf.org/doc/html/rfc8639">RFC 8639</a> periodic subscription with anchor-time configurable in ietf-subscribed-notifications.</p>
+	  <p>YANG notifications as defined in <a href="https://datatracker.ietf.org/doc/html/draft-netana-netconf-notif-envelope">
+	  draft-netana-netconf-notif-envelope</a>, YANG module name, version and yang-library-content-id as in <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-yang-notifications-versioning">
+	  draft-ietf-netconf-yang-notifications-versioning</a> and notification capabilities (<a href="https://datatracker.ietf.org/doc/html/rfc9196">RFC 9196</a>) discoverable as defined in their documents.</p>
+	  <p>YANG-Library as defined in <a href="https://datatracker.ietf.org/doc/html/rfc8525">RFC 8525</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-yang-library-augmentation">
+	  draft-ietf-netconf-yang-library-augmentation</a>.</p>
+	  
+	  <br/>
+
+      <h3>2026 &middot; Minimum Viable Product 2:</h3>
+
+	  <p>Distributed notifications as defined in <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-distributed-notif">
+	  draft-ietf-netconf-distributed-notif</a>.</p> 
+	  <p>YANG notifications encoded in CBOR (named identifiers) as defined in <a href="https://datatracker.ietf.org/doc/html/rfc9254">RFC 9254</a>.</p> 
+	  <p>YANG notifications DTLS (1.2 MUST RFC <a href="https://datatracker.ietf.org/doc/html/rfc6347">RFC 6347</a>, 1.3 SHOULD <a href="https://datatracker.ietf.org/doc/html/rfc9147">RFC 9147</a>) encrypted as defined in draft-ietf-netconf-udp-notif.</p> 
+	  
+	  <br/>
+
+      <h3>2027 &middot; Minimum Viable Product 3:</h3>
+
+	  <p><a href="https://datatracker.ietf.org/doc/html/rfc8641">RFC 8641</a> on-change subscription configurable in ietf-subscribed-notifications.</p> 
+	  <p><a href="https://datatracker.ietf.org/doc/html/rfc8641">RFC 8641</a> on-change and periodical subscription in <a href="https://datatracker.ietf.org/doc/html/rfc9196">RFC 9196</a> defined capabilities discoverable.</p> 
+	  <p><a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-notif">
+	  draft-ietf-netconf-udp-notif</a> transport, encoding and encryption capabilities (<a href="https://datatracker.ietf.org/doc/html/rfc9196">RFC 9196</a>) discoverable with <a href="https://datatracker.ietf.org/doc/html/draft-netana-netconf-yp-transport-capabilities">draft-netana-netconf-yp-transport-capabilities</a>.</p>
+    </div>
+    <div class="x"></div>
+  <div class="col">
+  </div>
+  <div id="footer">
+    <p>Thomas Graf, Paolo Lucente, Daniel Voyer and Holger Keller &middot; Feedback: <a href="https://github.com/network-analytics/www.network-analytics.org/issues/new">Create a github issue</a>,  (free github account required)</p>
+  </div>
+</div>
+</body>
+</html>

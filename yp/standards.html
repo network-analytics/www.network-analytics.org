@@ -14,11 +14,15 @@
     <li><a href="standards.html">standards</a></li>
   </ul>
   <div class="post">
+    <div class="col single">	
+	  <p>YANG-Push Notification, Transport and Capability Discovery and YANG Libary standartization process entered the phase where the specifications are being finalized and validated in implementations.</p>	
+    </div>  
     <div class="details">
       <img src="img/mvp.jpg" width="300" height="542">
     </div>
     <div class="body">
       <h3>YANG-Push Specifications:</h3>
+	    
 	  <p>Subscription to YANG Notifications<br/>
 	  <a href="https://datatracker.ietf.org/doc/html/rfc8639">RFC 8639</a></p>
 	  <p>Subscription to YANG Notifications for Datastore Updates<br/>
@@ -28,7 +32,23 @@
 	  
 	  <br/>
 
-      <h3>YANG-Push Specifications Gaps:</h3>
+      <h3>Message Broker Integration Architecture:</h3>
+
+	  <p>YANG-Push to Message Broker Architecture is currently being discussed at the NMOP working group and scheduled for IESG in September 2025.</p>
+	    
+	  <p>An Architecture for YANG-Push to Message Broker Integration<br/>
+	  <a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-yang-message-broker-integration">draft-ietf-nmop-yang-message-broker-integration</a></p>
+	  <p>Extensible YANG Model for Network Telemetry Notifications<br/>
+	  <a href="https://github.com/network-analytics/draft-netana-message-broker-telemetry-message">draft-netana-message-broker-telemetry-message</a></p>
+	  
+	  <br/>
+
+      <h3>YANG-Push and Capability Discovery:</h3>
+
+	  <p>YANG-Push transport protocol configured subscription documents are entering the IESG process and are expected to be RFC soon where the Notification header extension is currently being discussed and finalized at the NETCONG working group.</p>
+
+	  <p>Describing Capabilities for Systems and Datastore Update Notifications has been standardized with RFC 9196. Capability extensions for supporting YANG-Push transport protocols and Notification headers are currently being discussed and finalized at the NETCONF working group.</p>
+	  
 	  <p>UDP-based Transport for Configured Subscriptions<br/>
 	  <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-notif">
 	  draft-ietf-netconf-udp-notif</a></p>
@@ -39,23 +59,31 @@
 	  <a href="https://datatracker.ietf.org/doc/html/draft-netana-netconf-notif-envelope">draft-netana-netconf-notif-envelope</a></p>
 	  <p>YANG Notification Transport Capabilities<br/>
 	  <a href="https://datatracker.ietf.org/doc/html/draft-netana-netconf-yp-transport-capabilities">draft-netana-netconf-yp-transport-capabilities</a></p>
-	  <p>Validating anydata in YANG Library context<br/>
-	  <a href="https://datatracker.ietf.org/doc/html/draft-aelhassany-anydata-validation">
-	  draft-aelhassany-anydata-validation</a></p>
-	  
-	  <br/>
-	  
-	  <h3>YANG-Push Integration Gaps:</h3>
+      <p>Extensible YANG Model for YANG-Push Notifications<br/>
+	  <a href="https://datatracker.ietf.org/doc/html/draft-netana-netconf-notif-envelope">
+	  draft-netana-netconf-notif-envelope</a></p>
       <p>Support of Versioning in YANG Notifications Subscription<br/>
 	  <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-yang-notifications-versioning">
 	  draft-ietf-netconf-yang-notifications-versioning</a></p>
-	  <p>Augmented-by Addition into the IETF-YANG-Library<br/>
-	  <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-yang-library-augmentation">
-	  draft-ietf-netconf-yang-library-augmentation</a></p>
 	  
 	  <br/>
 	  
+	  <h3>YANG Library:</h3>
+
+	  <p>YANG Library has been standardized with RFC 8525. An extensions for augmented-by support is currently being discussed and finalized at the NETCONF working group.</p>
+
+	  <p>Augmented-by Addition into the IETF-YANG-Library<br/>
+	  <a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-yang-library-augmentation">
+	  draft-ietf-netconf-yang-library-augmentation</a></p>
+	  <p>Validating anydata in YANG Library context<br/>
+	  <a href="https://datatracker.ietf.org/doc/html/draft-aelhassany-anydata-validation">
+	  draft-aelhassany-anydata-validation</a></p>	  
+	  <br/>
+	  
 	  <h3>YANG-Push Simplification:</h3>
+	  
+	  <p>In order to reduce the scope of YANG-Push various simplifications are proposed to ease implementation and adoption.</p>
+	  
       <p>YANG-Push Operational Data Observability Enhancements<br/>
 	  <a href="https://datatracker.ietf.org/doc/html/draft-wilton-netconf-yp-observability">
 	  draft-wilton-netconf-yp-observability</a></p>
