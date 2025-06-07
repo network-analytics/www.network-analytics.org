@@ -15,7 +15,7 @@
   </ul>
   <div class="post">
     <div class="col single">	
-	  <p>Describes how a YANG-Push Publisher capabilities can be discovered, YANG-Push subscriptions can be configured and YANG Library can be queried with Netconf by giving examples.</p>	
+	  <p>Describes how a YANG-Push Publisher capabilities can be discovered, YANG-Push subscriptions can be configured and YANG Library can be queried with Netconf by giving examples with <a href="https://pypi.org/project/netconf-console2/">netconf-console</a>.</p>
 
 	  <br/><br/>
 
@@ -24,7 +24,8 @@
     <p>Shows which xpaths and subtrees can be subscribed in which intervall and dampening period</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user --rpc=get-yp-subscription.xml --commit
+    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user
+		--rpc=get-yp-subscription.xml --commit
 
     &#60;get&#62;
       &#60;filter type="subtree"&#62;
@@ -40,7 +41,8 @@
     <p>Shows YANG module names, versions and their dependencies</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user --rpc=get-yp-subscription.xml --commit
+    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user
+		--rpc=get-yp-subscription.xml --commit
 
     &#60;get&#62;
       &#60;filter type="subtree"&#62;
@@ -57,7 +59,8 @@
     <p>Configure a YANG-Push Receiver on a Publisher</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user --edit-config=edit-config-yp-subscription-receiver.xml --commit
+    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user 
+		--edit-config=edit-config-yp-subscription-receiver.xml --commit
 
     &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
       &#60;receiver-instances xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;
@@ -79,7 +82,8 @@
     <p>Delete YANG-Push Receiver</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user --edit-config=edit-config-yp-subscription-receiver-delete.xml --commit
+    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user 
+		--edit-config=edit-config-yp-subscription-receiver-delete.xml --commit
 		
     &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
       &#60;receiver-instances xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;
@@ -95,7 +99,8 @@
     <p>Configure a Periodical YANG-Push Subscription with Anchor-Time on a Publisher</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user --edit-config=edit-config-yp-subscription-periodical.xml --commit
+    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user 
+		--edit-config=edit-config-yp-subscription-periodical.xml --commit
 
     &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
       &#60;subscription&#62;
@@ -135,7 +140,8 @@
     <p>Configure a On-Change YANG-Push Subscription with Sync-On-Start on a Publisher</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user --edit-config=edit-config-yp-subscription-onchange.xml --commit
+    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user 
+		--edit-config=edit-config-yp-subscription-onchange.xml --commit
 
     &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
       &#60;subscription&#62;
@@ -175,7 +181,8 @@
     <p>Delete YANG-Push Subscription</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user --edit-config=edit-config-yp-subscription-delete.xml --commit
+    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user 
+		--edit-config=edit-config-yp-subscription-delete.xml --commit
 
     &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
       &#60;subscription nc:operation="delete" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
