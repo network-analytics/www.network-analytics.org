@@ -46,6 +46,7 @@
       &#60;get&#62;
         &#60;filter type="subtree"&#62;
           &#60;yang-library xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-library" /&#62;
+          &#60;modules-state xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-library" /&#62;
         &#60;/filter&#62;
       &#60;/get&#62;
     &#60;/rpc&#62;
@@ -68,7 +69,7 @@
           &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
             &#60;receiver-instances xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;
               &#60;receiver-instance&#62;
-                &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+                &#60;name&#62;ypreceiver&#60;/name&#62;
                   &#60;udp-notif-receiver xmlns="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;
                     &#60;address&#62;192.0.2.1&#60;/address&#62;
                     &#60;port&#62;10000&#60;/port&#62;
@@ -97,8 +98,8 @@
         &#60;config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
           &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
             &#60;receiver-instances xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;
-              &#60;receiver-instance&#62;
-                &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+              &#60;receiver-instance nc:operation="delete" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
+                &#60;name&#62;ypreceiver&#60;/name&#62;
               &#60;/receiver-instance&#62;
             &#60;/receiver-instances&#62;
           &#60;/subscriptions&#62;
@@ -132,15 +133,13 @@
                 xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces"&#62;
                 /if:interfaces/if:interface[if:type='ianaift:ethernetCsmacd']/if:statistics
               &#60;/datastore-xpath-filter&#62;
-              &#60;dscp&#62;0&#60;/dscp&#62;
               &#60;transport xmlns:unt="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;unt:udp-notif
               &#60;/transport&#62;
               &#60;encoding&#62;encode-json&#60;/encoding&#62;
-              &#60;purpose /&#62;
-              &#60;source-address&#62;10.190.64.79&#60;/source-address&#62;
+              &#60;source-address&#62;192.0.2.254&#60;/source-address&#62;
               &#60;receivers&#62;
                 &#60;receiver&#62;
-                  &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+                  &#60;name&#62;ypreceiver&#60;/name&#62;
                   &#60;receiver-instance-ref
                     xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;udpnotif
                   &#60;/receiver-instance-ref&#62;
@@ -148,7 +147,7 @@
               &#60;/receivers&#62;
               &#60;periodic xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-push"&#62;
                 &#60;period&#62;6000&#60;/period&#62;
-                &#60;anchor-time&#62;2025-03-02T00:00:00Z&#60;/anchor-time&#62;
+                &#60;anchor-time&#62;2025-01-01T00:00:30Z&#60;/anchor-time&#62;
               &#60;/periodic&#62;
             &#60;/subscription&#62;
           &#60;/subscriptions&#62;
@@ -182,15 +181,13 @@
                 xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces"&#62;
                 /if:interfaces/if:interface[if:type='ianaift:ethernetCsmacd']
               &#60;/datastore-xpath-filter&#62;
-              &#60;dscp&#62;0&#60;/dscp&#62;
               &#60;transport xmlns:unt="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;unt:udp-notif
               &#60;/transport&#62;
               &#60;encoding&#62;encode-json&#60;/encoding&#62;
-              &#60;purpose /&#62;
-              &#60;source-address&#62;10.190.64.79&#60;/source-address&#62;
+              &#60;source-address&#62;192.0.2.254&#60;/source-address&#62;
               &#60;receivers&#62;
                 &#60;receiver&#62;
-                  &#60;name&#62;udpnotifdaemon&#60;/name&#62;
+                  &#60;name&#62;ypreceiver&#60;/name&#62;
                   &#60;receiver-instance-ref xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notif-receivers"&#62;udpnotif
                   &#60;/receiver-instance-ref&#62;
                 &#60;/receiver&#62;
@@ -220,7 +217,7 @@
           &#60;/target&#62;
         &#60;config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
           &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"&#62;
-            &#60;subscription xc:operation="delete"&#62;
+            &#60;subscription nc:operation="delete" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
               &#60;id&#62;1&#60;/id&#62;
             &#60;/subscription&#62;
           &#60;/subscriptions&#62;
