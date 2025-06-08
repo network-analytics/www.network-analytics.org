@@ -24,7 +24,7 @@
     <p>Shows which xpaths and subtrees can be subscribed in which intervall and dampening period</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user
+    netconf-console2 --host=192.0.2.1 --port=830 --db=running --user=user
 		--rpc=get-yp-subscription.xml --commit
 
     &#60;get&#62;
@@ -41,7 +41,7 @@
     <p>Shows YANG module names, versions and their dependencies</p>
     <pre>
 
-    netconf-console2 --host=192.0.2.1 --port=830 --db=candidate --user=user
+    netconf-console2 --host=192.0.2.1 --port=830 --db=running --user=user
 		--rpc=get-yp-subscription.xml --commit
 
     &#60;get&#62;
@@ -189,6 +189,22 @@
         &#60;id&#62;1&#60;/id&#62;
       &#60;/subscription&#62;
     &#60;/subscriptions&#62;
+    </pre>
+
+	  <br/>
+
+    <p>Retrieve YANG-Push Subscription</p>
+    <pre>
+
+    netconf-console2 --host=192.0.2.1 --port=830 --db=runnin --user=user 
+		--rpc=get-yp-subscription.xml
+
+    &#60;get xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"&#62;
+      &#60;filter type="subtree"&#62;
+        &#60;subscriptions xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"/&#62;
+        &#60;filters xmlns="urn:ietf:params:xml:ns:yang:ietf-subscribed-notifications"/&#62;
+      &#60;filter&#62;
+    &#60;/get&#62;
     </pre>
 
     </div>  
