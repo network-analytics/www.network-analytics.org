@@ -67,8 +67,8 @@
         &#60;receiver-instance&#62;
           &#60;name&#62;ypreceiver&#60;/name&#62;
             &#60;udp-notif-receiver xmlns="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;
-              &#60;address&#62;192.0.2.1&#60;/address&#62;
-              &#60;port&#62;10000&#60;/port&#62;
+              &#60;remote-address&#62;192.0.2.1&#60;/address&#62;
+              &#60;remote-port&#62;10000&#60;/port&#62;
               &#60;enable-segmentation&#62;true&#60;/enable-segmentation&#62;
               &#60;max-segment-size&#62;1458&#60;/max-segment-size&#62;
           &#60;/udp-notif-receiver&#62;
@@ -118,7 +118,7 @@
         &#60;transport xmlns:unt="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;unt:udp-notif
         &#60;/transport&#62;
         &#60;encoding&#62;encode-json&#60;/encoding&#62;
-        &#60;source-address&#62;192.0.2.254&#60;/source-address&#62;
+        &#60;source-interface&#62;LoopBack0&#60;/source-interface&#62;
         &#60;receivers&#62;
           &#60;receiver&#62;
             &#60;name&#62;ypreceiver&#60;/name&#62;
@@ -159,7 +159,7 @@
         &#60;transport xmlns:unt="urn:ietf:params:xml:ns:yang:ietf-udp-notif-transport"&#62;unt:udp-notif
         &#60;/transport&#62;
         &#60;encoding&#62;encode-json&#60;/encoding&#62;
-        &#60;source-address&#62;192.0.2.254&#60;/source-address&#62;
+        &#60;source-interface&#62;LoopBack0&#60;/source-interface&#62;
         &#60;receivers&#62;
           &#60;receiver&#62;
             &#60;name&#62;ypreceiver&#60;/name&#62;
